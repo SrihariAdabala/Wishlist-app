@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}>
+    </head>
+  <body>
+  <div class="login-box">
+  <h1>WISH LIST</h1>
+  <form action="/task" method="post">
+  <div class="textbox">
+  <input type="text" name="content" placeholder="enter wish here">
+  </div>
+  <div class="textbox">
+  <input type="date" name="date"> 
+  </div>
+  <input type="submit" class="btn" value="ADD WISH">
+  </form>
+</div>
+<div class="result-box">
+<ol>
+ {% for task in tasks %}
+ <li>
+ {% if task.done %} <strike> {% endif %}{{ task.content }} {% if task.done %} </strike>{% endif %}
+ <a href="/delete/{{ task.id }}">Delete</a>
+ </li>
+ {% endfor %}
+ </ol>
+</div>
+</body>
+</html>
